@@ -3,7 +3,7 @@ sgMail.setApiKey(''); // Add your SendGrid API key
 
 exports.handler = async (event) => {
     const msg = {
-        from: 'Omar Eliseo Gómez Raírez <gomar8138@gmail.com>',
+        from: 'Omar Eliseo Gómez Ramírez <gomar8138@gmail.com>',
         to: ['gomar8138@gmail.com'],
         subject: 'Personal Website Feedback',
         html : `
@@ -18,18 +18,20 @@ exports.handler = async (event) => {
                 </body>
             </html>
         `
-    }; try {
+    }; 
+    try {
         await sgMail.send(msg);
         const response = {
             statusCode: 200,
-            body: JSON.stringify('Feedback email sent!'),
+            body: JSON.stringify('Feedback email sent!')
         };
+        return response;
     } catch (error) {
         console.log(error);
         const response = {
             statusCode: 500,
             body: JSON.stringify('Could not send feedback email.')
         };
+        return response;
     }
-    return response;
 };
